@@ -1,7 +1,10 @@
 
 function Home(){
     return (<>
-        <h1>WellCome Home</h1>
+    <div className="shome">
+        <h1 className="home">WellCome Home</h1>
+        <img src="https://source.unsplash.com/random/300x200" alt="" />
+    </div>
     </>);
 }
 

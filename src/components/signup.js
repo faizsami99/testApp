@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom"
+
+function getList(){
+    if(localStorage.getItem("MyItem") != null){
+        let mylst = JSON.parse(localStorage.getItem("MyItem"));
+        return mylst;
+    }
+    else{
+        localStorage.setItem("MyItem", JSON.stringify([]));
+        return [];
+    }
+}
 
 function Signup() {
 
@@ -7,13 +18,27 @@ function Signup() {
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [password, setPassword] = useState("");
+    const [ids, setIds] = useState(getList());
+    let history = useHistory();
 
     const changeName = (event) => {
-        setName(event.target.value);
+        var letters = /^[A-Za-z\s]+$/;
+        if(event.target.value.match(letters)){
+            setName(event.target.value);
+        }
+        else{
+            alert('Only Alphabets are allowed');
+        }
     }
 
     const changeNumber = (event) => {
-        setNumber(event.target.value);
+        var num = /^[0-9]+$/;
+        if(event.target.value.match(num)){
+            setNumber(event.target.value);
+        }
+        else{
+            alert('Only numbers are allowed');
+        }
     }
 
     const changeEmail = (event) => {
@@ -32,8 +57,13 @@ function Signup() {
             password
         }
 
+        
+        const newItem = [...ids, email];
+        setIds(newItem);
+        localStorage.setItem("MyItem", JSON.stringify(newItem));
         localStorage.setItem(email, JSON.stringify(obj));
 
+        history.push("/");
        
     }
 

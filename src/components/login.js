@@ -1,11 +1,12 @@
 
 import { useState } from "react";
 import {Link} from 'react-router-dom';
-
+import { useHistory } from "react-router-dom"
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    let history = useHistory();
 
     const changeName = (event) => {
         setEmail(event.target.value);
@@ -16,7 +17,14 @@ function Login() {
     }
 
     const logInNow = () => {
-        console.log("LongedIn");
+        const p = JSON.parse(localStorage.getItem(email)).password;
+        console.log(p);
+        if(p === password){
+            history.push("/home");
+        }
+        else{
+            alert("Emial or password is incorrect");
+        }
     }
 
     return (
@@ -29,8 +37,7 @@ function Login() {
             <div className="form">
                 <input type="email" name="name"  value={email} onChange={changeName}/>
                 <input type="password" name="password" onChange={changePassword} value={password}/>
-                <button className="Button" onClick={()=>
-                    Login
+                <button className="Button" onClick={logInNow
                 }>Login</button>
             </div>
             <div className="link">

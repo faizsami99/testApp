@@ -1,9 +1,10 @@
 
-import { BrowserRouter as Router, Route, Switch,Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/login";
 import Signup from "./components/signup";
 import Beach from "./components/beach";
 import Home from "./components/home";
+
 function App(){
     return (
         <>
