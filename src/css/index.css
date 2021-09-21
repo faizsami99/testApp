@@ -89,3 +89,14 @@ body, html{
     text-align: center;
     margin-bottom: 27px;
 }
+
+
+@media (max-width:700px){
+    .sundayMobility{
+        flex-direction: column;
+    }
+    .first,
+    .second {
+        width: 100%;
+    }
+}

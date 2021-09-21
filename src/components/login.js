@@ -17,8 +17,13 @@ function Login() {
     }
 
     const logInNow = () => {
-        const p = JSON.parse(localStorage.getItem(email)).password;
-        console.log(p);
+        let p;
+        if(!localStorage.getItem(email)){
+            console.log("email not found");
+        }
+        else{
+            p = JSON.parse(localStorage.getItem(email)).password;
+        };
         if(p === password){
             history.push("/home");
         }
